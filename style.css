@@ -60,6 +60,7 @@ section {
     background-color: darkgrey;
     height: 90%;
     border-style: none;
+    cursor: pointer;
 }
 
 input {
@@ -68,6 +69,12 @@ input {
     border-style: none;
     height: 90%;
     background-color: darkgrey;
+    cursor: pointer;
+}
+
+input:focus {
+    background-color: #DCDCDC;
+    border-style: unset;
 }
 
 .quarter_header {

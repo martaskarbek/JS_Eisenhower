@@ -1,6 +1,9 @@
 const removeButton = document.querySelector('delete');
 const markAsDone = document.querySelector('.mark_as_done');
-let storageContent = [];
+let storageContentUI = [];
+let storageContentUN = [];
+let storageContentNI = [];
+let storageContentNN = [];
 
 function main() {
     getNewTaskContent();
@@ -11,7 +14,23 @@ function getNewTaskContent() {
     addButton.forEach(button => button.addEventListener('click', function() {
         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
         createNewTask(inputValue);
-     /*   localStorage.setItem('note', JSON.stringify(inputValue.value));*/
+        const quarterName = this.parentElement.parentElement.id;
+        if (quarterName === "ui") {
+            storageContentUI.push(inputValue.value);
+            localStorage.setItem('ui', storageContentUI);
+        }
+        if (quarterName === "un") {
+            storageContentUN.push(inputValue.value);
+            localStorage.setItem('un', storageContentUN);
+        }
+        if (quarterName === "ni") {
+            storageContentNI.push(inputValue.value);
+            localStorage.setItem('ni', storageContentNI);
+        }
+        if (quarterName === "nn") {
+            storageContentNN.push(inputValue.value);
+            localStorage.setItem('nn', storageContentNN);
+        }
     }))
 }
 
@@ -27,7 +46,6 @@ function createNewTask(inputValue) {
     };
     const task = createTask(inputValue);
     inputValue.parentElement.parentElement.appendChild(task);
-
 }
 
 function getDataFromStorage() {

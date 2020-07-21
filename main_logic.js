@@ -28,4 +28,8 @@ function createNewTask(inputValue) {
 
 }
 
+function removeTask() {
+
+}
+
 main();

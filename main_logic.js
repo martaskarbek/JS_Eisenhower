@@ -30,11 +30,11 @@ function createNewTask(inputValue) {
 
 }
 
-function removeTask() {
+function getDataFromStorage() {
 
 }
 
-function getDataFromStorage() {
+function removeTask() {
 
 }
 

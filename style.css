@@ -48,7 +48,7 @@ section {
 }
 
 .new_task {
-    background-color: darkgrey;
+    background-color: rgb(51, 189, 194);
     width: 80%;
     height: 15%;
     display: flex;
@@ -59,11 +59,17 @@ section {
 .add_task {
     height:100%;
     width: 10%;
-    background-color: darkgrey;
+    background: rgb(19,187,186);
+    background: linear-gradient(90deg, rgba(19,187,186,1) 45%, rgba(17,129,128,1) 88%);
     height: 90%;
     border-style: none;
     cursor: pointer;
     border-radius: 25px;
+}
+
+.add_task:active {
+  background: #32c0d3;
+  transform: translateY(1px);
 }
 
 input {
@@ -105,6 +111,8 @@ footer {
     margin-top: 1%;
     width: 80%;
     height: 15%;
+    animation: fadeIn;
+    animation-duration: 2s;
 }
 
 .content_handler {

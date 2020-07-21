@@ -43,7 +43,7 @@ section {
     border: 2px solid  	#C0C0C0;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 25px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 5px 5px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .new_task {
@@ -79,4 +79,33 @@ input:focus {
 .quarter_header {
     margin-top: 2%;
     margin-bottom: 2%;
+}
+
+footer {
+    margin-bottom: 1%;
+}
+
+.task {
+    display: flex;
+    flex-direction: row;
+    background-color: darkgrey;
+    margin-top: 1%;
+    width: 80%;
+    height: 15%;
+}
+
+p {
+    display: block;
+    width:80%;
+    text-align: center;
+    line-height: 2rem;
+    margin-top: 1%;
+}
+
+.task_button {
+    display: block;
+    width: 10%;
+    height: 100%;
+    background-color: blue;
+    border-style: none;
 }

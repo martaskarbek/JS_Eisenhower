@@ -1,10 +1,5 @@
-
 const removeButton = document.querySelector('delete');
 const markAsDone = document.querySelector('.mark_as_done');
-const UItasks = document.querySelector('.ui');
-const UNtaskas = document.querySelector('.un');
-const NItasks = document.querySelector('.ni');
-const NNtaskas = document.querySelector('.nn');
 
 function main() {
     getNewTaskContent();
@@ -29,7 +24,6 @@ function createNewTask(inputValue) {
         return clone;
     };
     const task = createTask(inputValue);
-    console.log(inputValue.parentElement.parentElement);
     inputValue.parentElement.parentElement.appendChild(task);
 
 }

@@ -16,7 +16,7 @@ function getNewTaskContent() {
 
     addButton.forEach(button => button.addEventListener('click', function() {
         let taskValue = inputContent.value;
-        console.log(document.querySelector('.task_holder').value);
+        console.log(this.parentElement.getElementsByClassName('task_holder').item(0).value);
     }))
 
 }

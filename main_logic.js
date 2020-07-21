@@ -1,5 +1,6 @@
 const removeButton = document.querySelector('delete');
 const markAsDone = document.querySelector('.mark_as_done');
+let storageContent = [];
 
 function main() {
     getNewTaskContent();
@@ -10,6 +11,7 @@ function getNewTaskContent() {
     addButton.forEach(button => button.addEventListener('click', function() {
         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
         createNewTask(inputValue);
+     /*   localStorage.setItem('note', JSON.stringify(inputValue.value));*/
     }))
 }
 
@@ -29,6 +31,10 @@ function createNewTask(inputValue) {
 }
 
 function removeTask() {
+
+}
+
+function getDataFromStorage() {
 
 }
 

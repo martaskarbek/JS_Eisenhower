@@ -4,9 +4,11 @@ let storageContentUI = [];
 let storageContentUN = [];
 let storageContentNI = [];
 let storageContentNN = [];
+const storageKeys = ['ui', 'un', 'nn', 'ni'];
 
 function main() {
     getNewTaskContent();
+    getDataFromStorage();
 }
 
 function getNewTaskContent() {
@@ -17,19 +19,19 @@ function getNewTaskContent() {
         const quarterName = this.parentElement.parentElement.id;
         if (quarterName === "ui") {
             storageContentUI.push(inputValue.value);
-            localStorage.setItem('ui', storageContentUI);
+            localStorage.setItem('ui', JSON.stringify(storageContentUI));
         }
         if (quarterName === "un") {
             storageContentUN.push(inputValue.value);
-            localStorage.setItem('un', storageContentUN);
+            localStorage.setItem('un', JSON.stringify(storageContentUN));
         }
         if (quarterName === "ni") {
             storageContentNI.push(inputValue.value);
-            localStorage.setItem('ni', storageContentNI);
+            localStorage.setItem('ni', JSON.stringify(storageContentNI));
         }
         if (quarterName === "nn") {
             storageContentNN.push(inputValue.value);
-            localStorage.setItem('nn', storageContentNN);
+            localStorage.setItem('nn', JSON.stringify(storageContentNN));
         }
     }))
 }
@@ -49,6 +51,17 @@ function createNewTask(inputValue) {
 }
 
 function getDataFromStorage() {
+    const notesShow =  document.querySelectorAll('.quarter');
+    let uiData = JSON.parse(localStorage.getItem("ui"));
+    let niData = JSON.parse(localStorage.getItem("ni"));
+    let unData = JSON.parse(localStorage.getItem("un"));
+    let nnData = JSON.parse(localStorage.getItem("nn"));
+
+        for (let j=0; j<uiData.length; j++) {
+            let inputValue2 = uiData[j];
+            createNewTask(inputValue2);
+        };
+
 
 }
 

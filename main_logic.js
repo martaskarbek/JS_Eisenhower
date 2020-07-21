@@ -15,9 +15,10 @@ function getNewTaskContent() {
     const addButton = document.querySelectorAll('.add_task');
     addButton.forEach(button => button.addEventListener('click', function() {
         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
-        createNewTask(inputValue);
+        createNewTask(inputValue.value, inputValue.parentElement.parentElement);
         const quarterName = this.parentElement.parentElement.id;
         if (quarterName === "ui") {
+            storageContentUI = JSON.parse(localStorage.getItem("ui"));
             storageContentUI.push(inputValue.value);
             localStorage.setItem('ui', JSON.stringify(storageContentUI));
         }
@@ -36,18 +37,19 @@ function getNewTaskContent() {
     }))
 }
 
-function createNewTask(inputValue) {
+function createNewTask(inputValue, targetNode) {
+    console.log(inputValue);
     const createTask = function(inputValue){
         const template = document.querySelector('#task-template');
         const clone = document.importNode(template.content, true);
         clone.querySelector('.task');
         clone.querySelector('.mark_as_done');
-        clone.querySelector('.content_handler').textContent = inputValue.value;
+        clone.querySelector('.content_handler').textContent = inputValue;
         clone.querySelector('.delete');
         return clone;
     };
     const task = createTask(inputValue);
-    inputValue.parentElement.parentElement.appendChild(task);
+    targetNode.appendChild(task);
 }
 
 function getDataFromStorage() {
@@ -59,7 +61,8 @@ function getDataFromStorage() {
 
         for (let j=0; j<uiData.length; j++) {
             let inputValue2 = uiData[j];
-            createNewTask(inputValue2);
+            console.log(document.getElementsByClassName("quarter").item(0));
+            createNewTask(inputValue2, document.querySelector('#ui'));
         };
 
 

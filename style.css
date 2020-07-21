@@ -94,10 +94,14 @@ footer {
     height: 15%;
 }
 
-p {
+.content_handler {
+    width:80%;
+}
+
+.content_handler > p {
     display: block;
     width:80%;
-    text-align: center;
+    margin-left: 2%;
     line-height: 2rem;
     margin-top: 1%;
 }

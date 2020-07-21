@@ -14,7 +14,7 @@ function getNewTaskContent() {
     const addButton = document.querySelectorAll('.add_task');
     addButton.forEach(button => button.addEventListener('click', function() {
         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0).value;
-        createNewTask();
+        createNewTask(inputValue);
     }))
 }
 
@@ -24,11 +24,11 @@ function createNewTask(inputValue) {
         const clone = document.importNode(template.content, true);
         clone.querySelector('.task');
         clone.querySelector('.mark_as_done');
-        clone.querySelector('.content_handler').textContent(inputValue);
+        clone.querySelector('.content_handler').textContent = inputValue;
         clone.querySelector('.delete');
         return clone;
     };
-    const task = createTask('Add note');
+    const task = createTask(inputValue);
     document.querySelector('.quarter').appendChild(task);
 }
 

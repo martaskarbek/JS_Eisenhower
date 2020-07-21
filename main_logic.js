@@ -12,13 +12,24 @@ function main() {
 
 function getNewTaskContent() {
     const addButton = document.querySelectorAll('.add_task');
-    let inputContent = document.querySelector('.task_holder');
-
     addButton.forEach(button => button.addEventListener('click', function() {
-        let taskValue = inputContent.value;
-        console.log(this.parentElement.getElementsByClassName('task_holder').item(0).value);
+        const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0).value;
+        createNewTask();
     }))
+}
 
+function createNewTask(inputValue) {
+    const createTask = function(inputValue){
+        const template = document.querySelector('#task-template');
+        const clone = document.importNode(template.content, true);
+        clone.querySelector('.task');
+        clone.querySelector('.mark_as_done');
+        clone.querySelector('.content_handler').textContent(inputValue);
+        clone.querySelector('.delete');
+        return clone;
+    };
+    const task = createTask('Add note');
+    document.querySelector('.quarter').appendChild(task);
 }
 
 main();

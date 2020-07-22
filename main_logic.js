@@ -9,15 +9,15 @@ function addNewTask() {
     let tempArray = [];
     const addButton = document.querySelectorAll('.add_task');
     addButton.forEach(button => button.addEventListener('click', function() {
-        const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
-        if (inputValue.value !== "") {
+        const inputValue = this.parentElement.querySelector('.task_holder');
+        if (inputValue.value) {
             const quarterName = this.parentElement.parentElement.id;
             createNewTask(inputValue.value, inputValue.parentElement.parentElement);
             for (let key=0; key<storageKeys.length; key++) {
                 let keyName = storageKeys[key];
                 if (quarterName === `${keyName}`) {
                     console.log('blabla');
-                    if (localStorage.getItem(`${keyName}`) !== null) {
+                    if (localStorage.getItem(`${keyName}`)) {
                         tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
                     }
                     let singleTask = [inputValue.value, 'notDone'];
@@ -54,7 +54,7 @@ function getDataFromStorage() {
     for (let i = 0; i < storageKeys.length; i++) {
         let key = storageKeys[i];
         let restoredData = JSON.parse(localStorage.getItem(`${key}`));
-        if (restoredData !== null) {
+        if (restoredData) {
             for (let j = 0; j < restoredData.length; j++) {
                 let inputValue2 = restoredData[j][0];
                     createNewTask(inputValue2, document.querySelector(`#${key}`));

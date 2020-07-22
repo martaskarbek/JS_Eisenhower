@@ -20,7 +20,8 @@ function addNewTask() {
                     if (localStorage.getItem(`${keyName}`) !== null) {
                         tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
                     }
-                    tempArray.push(inputValue.value);
+                    let singleTask = [inputValue.value, 'notDone'];
+                    tempArray.push(singleTask);
                     localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
                     tempArray = [];
                 }
@@ -53,12 +54,10 @@ function getDataFromStorage() {
     for (let i = 0; i < storageKeys.length; i++) {
         let key = storageKeys[i];
         let restoredData = JSON.parse(localStorage.getItem(`${key}`));
-        if (restoredData.length != 0) {
+        if (restoredData !== null) {
             for (let j = 0; j < restoredData.length; j++) {
-                let inputValue2 = restoredData[j];
-                if (restoredData !== null) {
+                let inputValue2 = restoredData[j][0];
                     createNewTask(inputValue2, document.querySelector(`#${key}`));
-                };
             };
         };
     }

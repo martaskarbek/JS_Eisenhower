@@ -58,13 +58,18 @@ function getDataFromStorage() {
             for (let j = 0; j < restoredData.length; j++) {
                 let inputValue2 = restoredData[j][0];
                     createNewTask(inputValue2, document.querySelector(`#${key}`));
+                   /* const*/
+                   /* if (restoredData[j][1] === "notDone")*/
             };
         };
     }
 }
 
 function markAsDone() {
-
+     const  checkboxes = document.querySelectorAll('.mark');
+     checkboxes.forEach(checkbox => checkbox.addEventListener('click', function(){
+         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
+     }))
 }
 
 main();

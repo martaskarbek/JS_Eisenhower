@@ -4,6 +4,7 @@ function main() {
     getDataFromStorage();
     addNewTask();
     markAsDone();
+    test();
 }
 
 function addNewTask() {
@@ -47,6 +48,7 @@ function removeTask() {
 }
 
 function getDataFromStorage() {
+    const  checkboxess = document.querySelectorAll('.doneMark');
     for (let i = 0; i < storageKeys.length; i++) {
         let key = storageKeys[i];
         let restoredData = JSON.parse(localStorage.getItem(`${key}`));
@@ -54,8 +56,6 @@ function getDataFromStorage() {
             for (let j = 0; j < restoredData.length; j++) {
                 let inputValue2 = restoredData[j][0];
                     createNewTask(inputValue2, document.querySelector(`#${key}`));
-                   /* const*/
-                   /* if (restoredData[j][1] === "notDone")*/
             };
         };
     }
@@ -71,16 +71,31 @@ function markAsDone() {
              let taskNameFromArray = restoreData[ii][0];
               if (taskNameFromArray === taskName) {
                   let isDone = restoreData[ii][1];
-                  if (isDone === "notDone") {
-                      restoreData[ii][1] = "done";
-                  }
-                  if (isDone === "done") {
-                      restoreData[ii][1] = "notDone";
-                  }
+
               }
              localStorage.setItem(container, JSON.stringify(restoreData));
      }}));
 }
+
+function editData() {
+
+}
+
+/*
+function test() {
+    const  checkboxes = document.querySelectorAll('.doneMark');
+    checkboxes.forEach(checkboxx => {
+        if (isDone === "notDone") {
+            restoreData[ii][1] = "done";
+            checkbox.setAttribute('checked', 'checked')
+        }
+        if (isDone === "done") {
+            restoreData[ii][1] = "notDone";
+            checkbox.removeAttribute('checked')
+        }
+    })
+}*/
+
 
 main();
 

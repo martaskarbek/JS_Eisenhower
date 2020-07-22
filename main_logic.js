@@ -66,18 +66,13 @@ function markAsDone() {
      const  checkboxes = document.querySelectorAll('.doneMark');
      checkboxes.forEach(checkbox => checkbox.addEventListener('click', function(){
          let container = this.parentElement.parentElement.parentElement.id;
-         console.log(this.parentElement.parentElement.textContent);
+         console.log(this.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent);
          let restoreData = JSON.parse(localStorage.getItem(container));
          for (let ii=0; ii<restoreData.length; ii++) {
              let taskName = restoreData[ii][0];
 
-             if (a){
-
-
-         }
      }}));
 }
-
 
 main();
 

@@ -14,31 +14,38 @@ function addNewTask() {
     const addButton = document.querySelectorAll('.add_task');
     addButton.forEach(button => button.addEventListener('click', function() {
         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
-        const quarterName = this.parentElement.parentElement.id;
-        console.log(quarterName);
-        createNewTask(inputValue.value, inputValue.parentElement.parentElement);
-        if(quarterName === 'ui'){
-            if(localStorage.getItem("ui") !== null){
-                storageContentUI = JSON.parse(localStorage.getItem("ui"));}
-            storageContentUI.push(inputValue.value);
-            localStorage.setItem('ui', JSON.stringify(storageContentUI));}
-        if (quarterName === "un") {
-            if(localStorage.getItem("un") !== null){
-                storageContentUN = JSON.parse(localStorage.getItem("un"));}
-            storageContentUN.push(inputValue.value);
-            localStorage.setItem('un', JSON.stringify(storageContentUN));
-        }
-        if (quarterName === "ni") {
-            if(localStorage.getItem("ni") !== null){
-                storageContentNI = JSON.parse(localStorage.getItem("ni"));}
-            storageContentNI.push(inputValue.value);
-            localStorage.setItem('ni', JSON.stringify(storageContentNI));
-        }
-        if (quarterName === "nn") {
-            if(localStorage.getItem("nn") !== null){
-                storageContentNN = JSON.parse(localStorage.getItem("nn"));}
-            storageContentNN.push(inputValue.value);
-            localStorage.setItem('nn', JSON.stringify(storageContentNN));
+        if (inputValue.value !== "") {
+            const quarterName = this.parentElement.parentElement.id;
+            console.log(quarterName);
+            createNewTask(inputValue.value, inputValue.parentElement.parentElement);
+            if (quarterName === 'ui') {
+                if (localStorage.getItem("ui") !== null) {
+                    storageContentUI = JSON.parse(localStorage.getItem("ui"));
+                }
+                storageContentUI.push(inputValue.value);
+                localStorage.setItem('ui', JSON.stringify(storageContentUI));
+            }
+            if (quarterName === "un") {
+                if (localStorage.getItem("un") !== null) {
+                    storageContentUN = JSON.parse(localStorage.getItem("un"));
+                }
+                storageContentUN.push(inputValue.value);
+                localStorage.setItem('un', JSON.stringify(storageContentUN));
+            }
+            if (quarterName === "ni") {
+                if (localStorage.getItem("ni") !== null) {
+                    storageContentNI = JSON.parse(localStorage.getItem("ni"));
+                }
+                storageContentNI.push(inputValue.value);
+                localStorage.setItem('ni', JSON.stringify(storageContentNI));
+            }
+            if (quarterName === "nn") {
+                if (localStorage.getItem("nn") !== null) {
+                    storageContentNN = JSON.parse(localStorage.getItem("nn"));
+                }
+                storageContentNN.push(inputValue.value);
+                localStorage.setItem('nn', JSON.stringify(storageContentNN));
+            }
         }
     }))
 }

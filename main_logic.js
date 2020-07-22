@@ -3,6 +3,7 @@ const storageKeys = ['ui', 'un', 'nn', 'ni'];
 function main() {
     addNewTask();
     getDataFromStorage();
+    markAsDone()
 }
 
 function addNewTask() {
@@ -62,11 +63,21 @@ function getDataFromStorage() {
 }
 
 function markAsDone() {
-     const  checkboxes = document.querySelectorAll('.mark');
+     const  checkboxes = document.querySelectorAll('.doneMark');
      checkboxes.forEach(checkbox => checkbox.addEventListener('click', function(){
-         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
-     }))
+         let container = this.parentElement.parentElement.parentElement.id;
+         console.log(this.parentElement.parentElement.textContent);
+         let restoreData = JSON.parse(localStorage.getItem(container));
+         for (let ii=0; ii<restoreData.length; ii++) {
+             let taskName = restoreData[ii][0];
+
+             if (a){
+
+
+         }
+     }}));
 }
+
 
 main();
 

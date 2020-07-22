@@ -3,7 +3,6 @@ const storageKeys = ['ui', 'un', 'nn', 'ni'];
 function main() {
     addNewTask();
     getDataFromStorage();
-
 }
 
 function addNewTask() {
@@ -23,28 +22,27 @@ function addNewTask() {
                     }
                     tempArray.push(inputValue.value);
                     localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
+                    tempArray = [];
                 }
             }
         }
       inputValue.value = "";
     }))
-
 }
-
 
 function createNewTask(inputValue, targetNode) {
     const createTask = function(inputValue){
         const template = document.querySelector('#task-template');
         const clone = document.importNode(template.content, true);
         clone.querySelector('.task');
-        clone.querySelector('.mark_as_done');
+        clone.querySelector('.mark');
         clone.querySelector('.content_handler').textContent = inputValue;
         clone.querySelector('.delete');
+        clone.querySelector('p');
         return clone;
     };
     const task = createTask(inputValue);
     targetNode.appendChild(task);
-
 }
 
 function removeTask() {
@@ -64,6 +62,10 @@ function getDataFromStorage() {
             };
         };
     }
+}
+
+function markAsDone() {
+
 }
 
 main();

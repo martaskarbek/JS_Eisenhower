@@ -22,6 +22,7 @@ function addNewTask() {
                     }
                     tempArray.push(inputValue.value);
                     localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
+                    tempArray = [];
                 }
             }
         }

@@ -1,9 +1,9 @@
 const storageKeys = ['ui', 'un', 'nn', 'ni'];
 
 function main() {
-    addNewTask();
     getDataFromStorage();
-    markAsDone()
+    addNewTask();
+    markAsDone();
 }
 
 function addNewTask() {
@@ -17,7 +17,6 @@ function addNewTask() {
             for (let key=0; key<storageKeys.length; key++) {
                 let keyName = storageKeys[key];
                 if (quarterName === `${keyName}`) {
-                    console.log('blabla');
                     if (localStorage.getItem(`${keyName}`)) {
                         tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
                     }

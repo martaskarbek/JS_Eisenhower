@@ -47,7 +47,9 @@ function addNewTask() {
                 localStorage.setItem('nn', JSON.stringify(storageContentNN));
             }
         }
+      inputValue.value = "";
     }))
+
 }
 
 
@@ -66,59 +68,25 @@ function createNewTask(inputValue, targetNode) {
 
 }
 
-
-function getDataFromStorage() {
-    let uiData = JSON.parse(localStorage.getItem("ui"));
-    let niData = JSON.parse(localStorage.getItem("ni"));
-    let unData = JSON.parse(localStorage.getItem("un"));
-    let nnData = JSON.parse(localStorage.getItem("nn"));
-    if(uiData !== null) {
-        for (let j = 0; j < uiData.length; j++) {
-            let inputValue2 = uiData[j];
-            createNewTask(inputValue2, document.querySelector('#ui'));
-        }
-    }
-    if(unData !== null) {
-        for (let k = 0; k < unData.length; k++) {
-            let inputValue3 = unData[k];
-            createNewTask(inputValue3, document.querySelector('#un'));
-        }
-    }
-    if(niData !== null) {
-        for (let n = 0; n < niData.length; n++) {
-            let inputValue4 = niData[n];
-            createNewTask(inputValue4, document.querySelector('#ni'));
-        }
-    }
-    if(nnData !== null) {
-        for (let m = 0; m < nnData.length; m++) {
-            let inputValue5 = nnData[m];
-            createNewTask(inputValue5, document.querySelector('#nn'));
-        }
-    }
-
-
-
-}
-
 function removeTask() {
 
 }
 
-main();
-/*
 function getDataFromStorage() {
-    let restoredData = JSON.parse(localStorage.getItem("ui"));
-    for (let i=0; i<storageKeys.length; i++) {
-        let targetNode = storageKeys[i];
-        if (restoredData.length != 0){
+    for (let i = 0; i < storageKeys.length; i++) {
+        let key = storageKeys[i];
+        let restoredData = JSON.parse(localStorage.getItem(`${key}`));
+        if (restoredData.length != 0) {
             for (let j = 0; j < restoredData.length; j++) {
-                /!*inputValue = notesShow[i];*!/
-                let inputValue2 = uiData[j];
-                console.log(document.getElementsByClassName("quarter").item(0));
-                console.log(createNewTask(inputValue2, document.querySelector(`#${targetNode}`)));
+                let inputValue2 = restoredData[j];
+                if (restoredData !== null) {
+                    createNewTask(inputValue2, document.querySelector(`#${key}`));
+                };
             };
         };
-    };
-}*/
+    }
+}
+
+main();
+
 

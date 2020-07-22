@@ -1,8 +1,9 @@
 const storageKeys = ['ui', 'un', 'nn', 'ni'];
 
 function main() {
-    addNewTask();
     getDataFromStorage();
+    addNewTask();
+    markAsDone();
 }
 
 function addNewTask() {
@@ -16,7 +17,6 @@ function addNewTask() {
             for (let key=0; key<storageKeys.length; key++) {
                 let keyName = storageKeys[key];
                 if (quarterName === `${keyName}`) {
-                    console.log('blabla');
                     if (localStorage.getItem(`${keyName}`)) {
                         tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
                     }
@@ -62,10 +62,24 @@ function getDataFromStorage() {
 }
 
 function markAsDone() {
-     const  checkboxes = document.querySelectorAll('.mark');
+     const  checkboxes = document.querySelectorAll('.doneMark');
      checkboxes.forEach(checkbox => checkbox.addEventListener('click', function(){
-         const inputValue = this.parentElement.getElementsByClassName('task_holder').item(0);
-     }))
+         let container = this.parentElement.parentElement.parentElement.id;
+         let taskName = this.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent;
+         let restoreData = JSON.parse(localStorage.getItem(container));
+         for (let ii=0; ii<restoreData.length; ii++) {
+             let taskNameFromArray = restoreData[ii][0];
+              if (taskNameFromArray === taskName) {
+                  let isDone = restoreData[ii][1];
+                  if (isDone === "notDone") {
+                      restoreData[ii][1] = "done";
+                  }
+                  if (isDone === "done") {
+                      restoreData[ii][1] = "notDone";
+                  }
+              }
+             localStorage.setItem(container, JSON.stringify(restoreData));
+     }}));
 }
 
 main();

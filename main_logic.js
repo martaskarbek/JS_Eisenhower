@@ -35,11 +35,7 @@ function createNewTask(inputValue, targetNode) {
     const createTask = function(inputValue){
         const template = document.querySelector('#task-template');
         const clone = document.importNode(template.content, true);
-        clone.querySelector('.task');
-        clone.querySelector('.mark');
         clone.querySelector('.content_handler').textContent = inputValue;
-        clone.querySelector('.delete');
-        clone.querySelector('p');
         return clone;
     };
     const task = createTask(inputValue);

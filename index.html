@@ -8,17 +8,21 @@
     <script src="https://kit.fontawesome.com/bd5d5911de.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
     <script src="main_logic.js" defer></script>
     <title>Eisenhower Matrix</title>
 </head>
 <body>
 <template id="task-template">
     <div class="task">
-        <button class="mark_as_done"></button>
+        <label class="mark">
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+          </label>
         <div class="content_handler">
             <p class="task_content"></p>
         </div>
-        <button class="delete"><i class="delete_sign" class="fas fa-plus"></i></button>
+        <button class="delete">X</button>
     </div>
 </template>
     <div class="container">
@@ -29,15 +33,14 @@
                 <div class="new_task">
                     <button class="add_task"><i class="fas fa-plus"></i></button>
                     <input class="task_holder" placeholder="Add new task">
-
                 </div>
-                <div class="task">
+                <!-- <div class="task">
                     <button class="task_button" class="mark_as_done"></button>
                     <div class="content_handler">
                         <p class="task_content">mskhfefbewgf</p>
                     </div>
                     <button class="task_button" class="delete"><i class="delete_sign" class="fas fa-plus"></i></button>
-                </div>
+                </div> -->
             </div>
             <div class="quarter" id="un">
                 <p class="quarter_header">Urgent & not important</p>

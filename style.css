@@ -48,38 +48,63 @@ section {
 }
 
 .new_task {
-    background-color: darkgrey;
+    background-color: rgb(51, 189, 194);
     width: 80%;
     height: 15%;
     display: flex;
     align-items: center;
+    border-radius: 25px;
 }
 
 .add_task {
     height:100%;
     width: 10%;
-    background-color: darkgrey;
+    background: rgb(19,187,186);
+    background: linear-gradient(90deg, rgba(19,187,186,1) 45%, rgba(17,129,128,1) 88%);
     height: 90%;
     border-style: none;
     cursor: pointer;
+    border-radius: 25px;
 }
 
-input {
+.add_task:hover {
+    background: rgb(19,187,186);
+    background: radial-gradient(circle, rgba(19,187,186,1) 11%, rgba(17,129,128,1) 39%, rgba(19,187,186,1) 76%);
+}
+
+.add_task:active {
+    background: rgb(19,187,186);
+    background: radial-gradient(circle, rgba(19,187,186,1) 11%, rgba(19,187,186,1) 46%, rgba(17,129,128,1) 87%);
+    transform: translateY(1px);
+}
+
+.new_task > input {
     display: block;
-    width: 90%;
+    width: 85%;
     border-style: none;
     height: 90%;
-    background-color: darkgrey;
+    background-color: #e9e9e9;
+    color: rgb(0, 0, 0);
     cursor: pointer;
+    border-radius: 25px;
+    text-indent: 1em;
+    font-size: 1em;
 }
 
-input:focus {
-    background-color: #DCDCDC;
-}
+::placeholder {
+    color: rgb(0, 0, 0);
+  }
 
 .quarter_header {
     margin-top: 2%;
     margin-bottom: 2%;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    font-weight: 700;
+    text-decoration: rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
 }
 
 footer {
@@ -89,28 +114,92 @@ footer {
 .task {
     display: flex;
     flex-direction: row;
-    background-color: darkgrey;
+    background: rgb(19,187,186);
+    background: radial-gradient(circle, rgba(19,187,186,1) 11%, rgba(19,187,186,1) 31%, rgba(17,129,128,1) 63%);
     margin-top: 1%;
     width: 80%;
     height: 15%;
+    border-radius: 25px;
+    animation: fadeIn;
+    animation-duration: 2s;
 }
 
 .content_handler {
-    width:80%;
-}
-
-.content_handler > p {
     display: block;
     width:80%;
-    margin-left: 2%;
+    margin-left: 10%;
     line-height: 2rem;
-    margin-top: 1%;
+    margin-top: 2%;
 }
 
-.task_button {
+.mark > input {
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    display: block;
+    border-radius: 5px;
+    margin-left: 50%;
+    margin-top: auto;
+    height: 1vw;
+    width: 1vw;
+    background-color: #eee;
+}
+
+.mark:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+.mark input:checked ~ .checkmark {
+    background-color: #15b6b6;
+  }
+  
+.checkmark:after {
+    content: "";
+    display: none;
+  }
+  
+.mark input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+.mark .checkmark:after {
+    margin-left: 0.55em;
+    width: 0.3125em;
+    height: 0.625em;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.delete {
     display: block;
     width: 10%;
-    height: 100%;
-    background-color: blue;
+    height: 75%;
+    margin-top: 0.3em;
+    margin-right: 5%;
     border-style: none;
+    padding: 1em 2em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(255, 0, 0);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0.4em #999;
+}
+  
+.delete:hover {background-color: #bb0000}
+  
+.delete:active {
+    background-color: #7e0000;
+    box-shadow: 0 0.4em #666;
+    transform: translateY(0.125em);
 }

@@ -97,6 +97,7 @@ section {
 
 ::placeholder {
     color: rgb(175, 175, 175);
+    font-style: italic;
   }
 
 .quarter_header {
@@ -118,6 +119,7 @@ footer {
 .task {
     display: flex;
     flex-direction: row;
+    
     background: rgb(19,187,186);
     background: radial-gradient(circle, rgba(19,187,186,1) 11%, rgba(19,187,186,1) 31%, rgba(17,129,128,1) 63%);
     margin-top: 1%;
@@ -129,6 +131,8 @@ footer {
 }
 
 .content_handler {
+    font-family: 'Poiret One', cursive;
+    font-size: 1.5em;
     display: block;
     width:80%;
     margin-left: 10%;

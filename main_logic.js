@@ -13,7 +13,7 @@ function addNewTask() {
     addButton.forEach(button => button.addEventListener('click', function() {
         const inputValue = this.parentElement.querySelector('.task_holder');
         if (inputValue.value) {
-            const quarterName = this.parentElement.parentElement.id;
+            let quarterName = this.parentElement.parentElement.id;
             createNewTask(inputValue.value, inputValue.parentElement.parentElement);
             for (let key=0; key<storageKeys.length; key++) {
                 let keyName = storageKeys[key];
@@ -82,15 +82,15 @@ function markAsDone() {
          let taskName = this.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent;
          let restoreData = JSON.parse(localStorage.getItem(container));
          for (let ii=0; ii<restoreData.length; ii++) {
-             let taskNameFromArray = restoreData[ii][0];
+              let taskNameFromArray = restoreData[ii][0];
               if (taskNameFromArray === taskName) {
                   if(restoreData[ii][1] === 'notDone'){
                   restoreData[ii] = [taskName, 'done'];
 
                   }
-                  // if(restoreData[ii][1] === 'done'){
-                  // restoreData[ii] = [taskName, 'notDone'];
-                  // }
+                  if(restoreData[ii][1] === 'done'){
+                  restoreData[ii] = [taskName, 'notDone'];
+                  }
 
               }
              localStorage.setItem(container, JSON.stringify(restoreData));

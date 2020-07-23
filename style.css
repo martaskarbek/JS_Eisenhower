@@ -44,7 +44,7 @@ section {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 5px 5px 4px rgba(0, 0, 0, 0.25);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .new_task {
@@ -91,8 +91,12 @@ section {
     font-size: 1em;
 }
 
+.new_task > input:hover{
+    background-color: rgb(240, 240, 240);
+}
+
 ::placeholder {
-    color: rgb(0, 0, 0);
+    color: rgb(175, 175, 175);
   }
 
 .quarter_header {
@@ -146,6 +150,7 @@ footer {
     height: 1vw;
     width: 1vw;
     background-color: #eee;
+    cursor: pointer;
 }
 
 .mark:hover input ~ .checkmark {

@@ -213,7 +213,16 @@ footer {
     border: none;
     cursor: pointer;
     height: 50%;
+    width: 2em;
     margin-top: 0.8em;
     margin-right: 1em;
     font-size: 1em;
+    border-radius: 1em;
+}
+
+.edit:hover {
+    background-color: rgb(38, 187, 187);
+    -webkit-transition: 1s linear;
+    -ms-transition: 1s linear;
+    transition: 1s linear;
 }

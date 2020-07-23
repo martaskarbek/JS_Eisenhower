@@ -88,7 +88,7 @@ function markAsDone() {
                   restoreData[ii] = [taskName, 'done'];
 
                   }
-                  if(restoreData[ii][1] === 'done'){
+                  else{
                   restoreData[ii] = [taskName, 'notDone'];
                   }
 

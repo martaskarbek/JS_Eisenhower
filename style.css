@@ -143,7 +143,6 @@ footer {
     display: block;
     border-radius: 5px;
     margin-left: 50%;
-    margin-top: auto;
     height: 1vw;
     width: 1vw;
     background-color: #eee;
@@ -206,4 +205,15 @@ footer {
 
 .markAsDone {
     text-decoration-line: line-through;
+}
+
+.edit {
+    color: black;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    height: 50%;
+    margin-top: 0.8em;
+    margin-right: 1em;
+    font-size: 1em;
 }

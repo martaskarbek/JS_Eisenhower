@@ -5,6 +5,7 @@ function main() {
     addNewTask();
     markAsDone();
     removeTask();
+    editData();
 }
 
 function addNewTask() {
@@ -119,7 +120,22 @@ function markAsDone() {
 }
 
 function editData() {
-
+    const editButtons = document.querySelectorAll('.edit');
+    editButtons.forEach(editButton => editButton.addEventListener('click', function () {
+        let taskName = this.parentElement.getElementsByClassName('content_handler').item(0).textContent;
+        let newTaskName = prompt("Edit task: ", taskName);
+        let container = this.parentElement.parentElement.id;
+        let restoreData = JSON.parse(localStorage.getItem(container));
+        for (let i = 0; i < restoreData.length; i++) {
+            let markNameFromArray = restoreData[i][1];
+            let taskNameFromArray = restoreData[i][0];
+            if (taskNameFromArray === taskName && newTaskName !== null){
+                restoreData[i] = [newTaskName, markNameFromArray];
+                this.parentElement.getElementsByClassName('content_handler').item(0).textContent = newTaskName;
+            }
+        }
+        localStorage.setItem(container, JSON.stringify(restoreData));
+    }));
 }
 
 

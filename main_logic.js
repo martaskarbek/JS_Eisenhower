@@ -4,7 +4,7 @@ function main() {
     getDataFromStorage();
     addNewTask();
     markAsDone();
-    test();
+    // test();
 }
 
 function addNewTask() {
@@ -55,10 +55,24 @@ function getDataFromStorage() {
         if (restoredData) {
             for (let j = 0; j < restoredData.length; j++) {
                 let inputValue2 = restoredData[j][0];
-                    createNewTask(inputValue2, document.querySelector(`#${key}`));
+                createNewTask(inputValue2, document.querySelector(`#${key}`));
+                if(restoredData[j][1] === "done"){
+                    setCheckbox(inputValue2);
+                }
             };
         };
     }
+}
+
+function setCheckbox(inputValue2) {
+    const  checkboxes = document.querySelectorAll('.doneMark');
+    checkboxes.forEach(checkbox => {
+    if(checkbox.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent === inputValue2){
+        checkbox.setAttribute('checked', 'checked');
+    }
+    });
+
+
 }
 
 function markAsDone() {
@@ -70,7 +84,13 @@ function markAsDone() {
          for (let ii=0; ii<restoreData.length; ii++) {
              let taskNameFromArray = restoreData[ii][0];
               if (taskNameFromArray === taskName) {
-                  let isDone = restoreData[ii][1];
+                  if(restoreData[ii][1] === 'notDone'){
+                  restoreData[ii] = [taskName, 'done'];
+
+                  }
+                  // if(restoreData[ii][1] === 'done'){
+                  // restoreData[ii] = [taskName, 'notDone'];
+                  // }
 
               }
              localStorage.setItem(container, JSON.stringify(restoreData));
@@ -81,20 +101,20 @@ function editData() {
 
 }
 
-/*
-function test() {
-    const  checkboxes = document.querySelectorAll('.doneMark');
-    checkboxes.forEach(checkboxx => {
-        if (isDone === "notDone") {
-            restoreData[ii][1] = "done";
-            checkbox.setAttribute('checked', 'checked')
-        }
-        if (isDone === "done") {
-            restoreData[ii][1] = "notDone";
-            checkbox.removeAttribute('checked')
-        }
-    })
-}*/
+
+// function test() {
+//     const  checkboxes = document.querySelectorAll('.doneMark');
+//     checkboxes.forEach(checkboxx => {
+//         if (isDone === "notDone") {
+//             restoreData[ii][1] = "done";
+//             checkbox.setAttribute('checked', 'checked')
+//         }
+//         if (isDone === "done") {
+//             restoreData[ii][1] = "notDone";
+//             checkbox.removeAttribute('checked')
+//         }
+//     })
+
 
 
 main();

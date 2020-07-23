@@ -60,5 +60,16 @@
         </section>
         <footer>Copyright &#169 Marta Skarbek, Mikołaj Urbanek, Patryk Król, Tomasz Krogulec</footer>
     </div>
+<script type="module">
+    import interact from
+            'https://cdn.interactjs.io/v1.9.20/interactjs/index.js'
+
+    interact('.item').draggable({
+        onmove(event) {
+            console.log(event.pageX,
+                event.pageY)
+        }
+    })
+</script>
 </body>
 </html>

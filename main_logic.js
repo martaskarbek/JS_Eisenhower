@@ -5,6 +5,7 @@ function main() {
     addNewTask();
     markAsDone();
     removeTask();
+    editData();
 }
 
 function addNewTask() {
@@ -51,18 +52,13 @@ function removeTask() {
         tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
         console.log(this.parentElement.getElementsByClassName('content_handler').item(0).textContent);
         tempArray.forEach(item => {
-
-
             if (item[0] === this.parentElement.getElementsByClassName('content_handler').item(0).textContent) {
                 const index = tempArray.indexOf(item);
                 tempArray.splice(index, 1);
                 console.log(tempArray);
                 localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
             }
-
             this.parentElement.remove();
-
-
         });
     }));
 }
@@ -79,9 +75,7 @@ function getDataFromStorage() {
                     setCheckbox(inputValue2);
                 }
             }
-
         }
-
     }
 }
 
@@ -92,8 +86,6 @@ function setCheckbox(inputValue2) {
             checkbox.setAttribute('checked', 'checked');
         }
     });
-
-
 }
 
 function markAsDone() {
@@ -111,7 +103,6 @@ function markAsDone() {
                 } else {
                     restoreData[ii] = [taskName, 'notDone'];
                 }
-
             }
             localStorage.setItem(container, JSON.stringify(restoreData));
         }
@@ -119,9 +110,23 @@ function markAsDone() {
 }
 
 function editData() {
-
+    const editButtons = document.querySelectorAll('.edit');
+    editButtons.forEach(editButton => editButton.addEventListener('click', function () {
+        let taskName = this.parentElement.getElementsByClassName('content_handler').item(0).textContent;
+        let newTaskName = prompt("Edit task: ", taskName);
+        let container = this.parentElement.parentElement.id;
+        let restoreData = JSON.parse(localStorage.getItem(container));
+        for (let i = 0; i < restoreData.length; i++) {
+            let markNameFromArray = restoreData[i][1];
+            let taskNameFromArray = restoreData[i][0];
+            if (taskNameFromArray === taskName && newTaskName !== null){
+                restoreData[i] = [newTaskName, markNameFromArray];
+                this.parentElement.getElementsByClassName('content_handler').item(0).textContent = newTaskName;
+            }
+        }
+        localStorage.setItem(container, JSON.stringify(restoreData));
+    }));
 }
-
 
 main();
 

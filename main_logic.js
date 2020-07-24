@@ -14,10 +14,10 @@ function getDataFromStorage() {
         const restoredData = JSON.parse(localStorage.getItem(key));
         if (restoredData) {
             for (let j = 0; j < restoredData.length; j++) {
-                const inputValue2 = restoredData[j][0];
-                createNewTask(inputValue2, document.querySelector(`#${key}`));
+                const taskName = restoredData[j][0];
+                createNewTask(taskName, document.querySelector(`#${key}`));
                 if (restoredData[j][1] === "done") {
-                    setCheckbox(inputValue2);
+                    setCheckbox(taskName);
                 }
             }
         }
@@ -35,10 +35,10 @@ function createNewTask(inputValue, targetNode) {
     targetNode.appendChild(task);
 }
 
-function setCheckbox(inputValue2) {
+function setCheckbox(taskName) {
     const checkboxes = document.querySelectorAll('.doneMark');
     checkboxes.forEach(checkbox => {
-        if (checkbox.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent === inputValue2) {
+        if (checkbox.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent === taskName) {
             checkbox.setAttribute('checked', 'checked');
         }
     });

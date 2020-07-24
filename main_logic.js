@@ -14,15 +14,15 @@ function addNewTask() {
     addButton.forEach(button => button.addEventListener('click', function () {
         const inputValue = this.parentElement.querySelector('.task_holder');
         if (inputValue.value) {
-            let quarterName = this.parentElement.parentElement.id;
+            const quarterName = this.parentElement.parentElement.id;
             createNewTask(inputValue.value, inputValue.parentElement.parentElement);
             for (let key = 0; key < storageKeys.length; key++) {
-                let keyName = storageKeys[key];
+                const keyName = storageKeys[key];
                 if (quarterName === `${keyName}`) {
                     if (localStorage.getItem(`${keyName}`)) {
                         tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
                     }
-                    let singleTask = [inputValue.value, 'notDone'];
+                    const singleTask = [inputValue.value, 'notDone'];
                     tempArray.push(singleTask);
                     localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
                     tempArray = [];
@@ -65,11 +65,11 @@ function removeTask() {
 
 function getDataFromStorage() {
     for (let i = 0; i < storageKeys.length; i++) {
-        let key = storageKeys[i];
-        let restoredData = JSON.parse(localStorage.getItem(`${key}`));
+        const key = storageKeys[i];
+        const restoredData = JSON.parse(localStorage.getItem(key));
         if (restoredData) {
             for (let j = 0; j < restoredData.length; j++) {
-                let inputValue2 = restoredData[j][0];
+                const inputValue2 = restoredData[j][0];
                 createNewTask(inputValue2, document.querySelector(`#${key}`));
                 if (restoredData[j][1] === "done") {
                     setCheckbox(inputValue2);

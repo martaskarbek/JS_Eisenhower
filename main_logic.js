@@ -24,15 +24,11 @@ function getDataFromStorage() {
     }
 }
 
-function createNewTask(inputValue, targetNode) {
-    const createTask = function (inputValue) {
-        const template = document.querySelector('#task-template');
-        const clone = document.importNode(template.content, true);
-        clone.querySelector('.content_handler').textContent = inputValue;
-        return clone;
-    };
-    const task = createTask(inputValue);
-    targetNode.appendChild(task);
+function createNewTask(taskName, targetNode) {
+    const template = document.querySelector('#task-template');
+    const taskElement = document.importNode(template.content, true);
+    taskElement.querySelector('.content_handler').textContent = taskName;
+    targetNode.appendChild(taskElement);
 }
 
 function setCheckbox(taskName) {

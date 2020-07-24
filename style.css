@@ -44,7 +44,7 @@ section {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 5px 5px 4px rgba(0, 0, 0, 0.25);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .new_task {
@@ -91,8 +91,13 @@ section {
     font-size: 1em;
 }
 
+.new_task > input:hover{
+    background-color: rgb(240, 240, 240);
+}
+
 ::placeholder {
-    color: rgb(0, 0, 0);
+    color: rgb(175, 175, 175);
+    font-style: italic;
   }
 
 .quarter_header {
@@ -114,6 +119,7 @@ footer {
 .task {
     display: flex;
     flex-direction: row;
+    
     background: rgb(19,187,186);
     background: radial-gradient(circle, rgba(19,187,186,1) 11%, rgba(19,187,186,1) 31%, rgba(17,129,128,1) 63%);
     margin-top: 1%;
@@ -125,6 +131,8 @@ footer {
 }
 
 .content_handler {
+    font-family: 'Poiret One', cursive;
+    font-size: 1.5em;
     display: block;
     width:80%;
     margin-left: 10%;
@@ -143,10 +151,10 @@ footer {
     display: block;
     border-radius: 5px;
     margin-left: 50%;
-    margin-top: auto;
     height: 1vw;
     width: 1vw;
     background-color: #eee;
+    cursor: pointer;
 }
 
 .mark:hover input ~ .checkmark {
@@ -206,4 +214,24 @@ footer {
 
 .markAsDone {
     text-decoration-line: line-through;
+}
+
+.edit {
+    color: black;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    height: 50%;
+    width: 2em;
+    margin-top: 0.8em;
+    margin-right: 1em;
+    font-size: 1em;
+    border-radius: 1em;
+}
+
+.edit:hover {
+    background-color: rgb(38, 187, 187);
+    -webkit-transition: 1s linear;
+    -ms-transition: 1s linear;
+    transition: 1s linear;
 }

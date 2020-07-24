@@ -1,11 +1,47 @@
 const storageKeys = ['ui', 'un', 'nn', 'ni'];
 
-function main() {
+(() => {
     getDataFromStorage();
     addNewTask();
     markAsDone();
     removeTask();
     editData();
+})();
+
+function getDataFromStorage() {
+    for (let i = 0; i < storageKeys.length; i++) {
+        const key = storageKeys[i];
+        const restoredData = JSON.parse(localStorage.getItem(key));
+        if (restoredData) {
+            for (let j = 0; j < restoredData.length; j++) {
+                const inputValue2 = restoredData[j][0];
+                createNewTask(inputValue2, document.querySelector(`#${key}`));
+                if (restoredData[j][1] === "done") {
+                    setCheckbox(inputValue2);
+                }
+            }
+        }
+    }
+}
+
+function createNewTask(inputValue, targetNode) {
+    const createTask = function (inputValue) {
+        const template = document.querySelector('#task-template');
+        const clone = document.importNode(template.content, true);
+        clone.querySelector('.content_handler').textContent = inputValue;
+        return clone;
+    };
+    const task = createTask(inputValue);
+    targetNode.appendChild(task);
+}
+
+function setCheckbox(inputValue2) {
+    const checkboxes = document.querySelectorAll('.doneMark');
+    checkboxes.forEach(checkbox => {
+        if (checkbox.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent === inputValue2) {
+            checkbox.setAttribute('checked', 'checked');
+        }
+    });
 }
 
 function addNewTask() {
@@ -33,61 +69,6 @@ function addNewTask() {
     }))
 }
 
-function createNewTask(inputValue, targetNode) {
-    const createTask = function (inputValue) {
-        const template = document.querySelector('#task-template');
-        const clone = document.importNode(template.content, true);
-        clone.querySelector('.content_handler').textContent = inputValue;
-        return clone;
-    };
-    const task = createTask(inputValue);
-    targetNode.appendChild(task);
-}
-
-function removeTask() {
-    let tempArray = [];
-    const deleteButton = document.querySelectorAll('.delete');
-    deleteButton.forEach(button => button.addEventListener('click', function () {
-        const keyName = this.parentElement.parentElement.id;
-        tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
-        console.log(this.parentElement.getElementsByClassName('content_handler').item(0).textContent);
-        tempArray.forEach(item => {
-            if (item[0] === this.parentElement.getElementsByClassName('content_handler').item(0).textContent) {
-                const index = tempArray.indexOf(item);
-                tempArray.splice(index, 1);
-                console.log(tempArray);
-                localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
-            }
-            this.parentElement.remove();
-        });
-    }));
-}
-
-function getDataFromStorage() {
-    for (let i = 0; i < storageKeys.length; i++) {
-        const key = storageKeys[i];
-        const restoredData = JSON.parse(localStorage.getItem(key));
-        if (restoredData) {
-            for (let j = 0; j < restoredData.length; j++) {
-                const inputValue2 = restoredData[j][0];
-                createNewTask(inputValue2, document.querySelector(`#${key}`));
-                if (restoredData[j][1] === "done") {
-                    setCheckbox(inputValue2);
-                }
-            }
-        }
-    }
-}
-
-function setCheckbox(inputValue2) {
-    const checkboxes = document.querySelectorAll('.doneMark');
-    checkboxes.forEach(checkbox => {
-        if (checkbox.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent === inputValue2) {
-            checkbox.setAttribute('checked', 'checked');
-        }
-    });
-}
-
 function markAsDone() {
     const checkboxes = document.querySelectorAll('.doneMark');
     checkboxes.forEach(checkbox => checkbox.addEventListener('click', function () {
@@ -109,6 +90,25 @@ function markAsDone() {
     }));
 }
 
+function removeTask() {
+    let tempArray = [];
+    const deleteButton = document.querySelectorAll('.delete');
+    deleteButton.forEach(button => button.addEventListener('click', function () {
+        const keyName = this.parentElement.parentElement.id;
+        tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
+        console.log(this.parentElement.getElementsByClassName('content_handler').item(0).textContent);
+        tempArray.forEach(item => {
+            if (item[0] === this.parentElement.getElementsByClassName('content_handler').item(0).textContent) {
+                const index = tempArray.indexOf(item);
+                tempArray.splice(index, 1);
+                console.log(tempArray);
+                localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
+            }
+            this.parentElement.remove();
+        });
+    }));
+}
+
 function editData() {
     const editButtons = document.querySelectorAll('.edit');
     editButtons.forEach(editButton => editButton.addEventListener('click', function () {
@@ -127,7 +127,3 @@ function editData() {
         localStorage.setItem(container, JSON.stringify(restoreData));
     }));
 }
-
-main();
-
-

@@ -41,27 +41,27 @@ function setCheckbox(taskName) {
 }
 
 function addNewTask() {
-    let tempArray = [];
-    const addButton = document.querySelectorAll('.add_task');
-    addButton.forEach(button => button.addEventListener('click', function () {
-        const inputValue = this.parentElement.querySelector('.task_holder');
-        if (inputValue.value) {
-            const quarterName = this.parentElement.parentElement.id;
-            createNewTask(inputValue.value, inputValue.parentElement.parentElement);
+    let tasks = [];
+    const addButtons = document.querySelectorAll('.add_task');
+    addButtons.forEach(button => button.addEventListener('click', event => {
+        const inputElement = event.target.parentElement.querySelector('.task_holder');
+        if (inputElement.value) {
+            const quarterName = event.target.parentElement.parentElement.id;
+            createNewTask(inputElement.value, inputElement.parentElement.parentElement);
             for (let key = 0; key < storageKeys.length; key++) {
                 const keyName = storageKeys[key];
                 if (quarterName === `${keyName}`) {
                     if (localStorage.getItem(`${keyName}`)) {
-                        tempArray = JSON.parse(localStorage.getItem(`${keyName}`));
+                        tasks = JSON.parse(localStorage.getItem(`${keyName}`));
                     }
-                    const singleTask = [inputValue.value, 'notDone'];
-                    tempArray.push(singleTask);
-                    localStorage.setItem(`${keyName}`, JSON.stringify(tempArray));
-                    tempArray = [];
+                    const singleTask = [inputElement.value, 'notDone'];
+                    tasks.push(singleTask);
+                    localStorage.setItem(`${keyName}`, JSON.stringify(tasks));
+                    tasks = [];
                 }
             }
         }
-        inputValue.value = "";
+        inputElement.value = "";
     }))
 }
 
@@ -69,17 +69,12 @@ function markAsDone() {
     const checkboxes = document.querySelectorAll('.doneMark');
     checkboxes.forEach(checkbox => checkbox.addEventListener('click', function () {
         let container = this.parentElement.parentElement.parentElement.id;
-        let taskName = this.parentElement.parentElement.getElementsByClassName('content_handler').item(0).textContent;
+        let taskName = this.parentElement.parentElement.querySelector('.content_handler').textContent;
         let restoreData = JSON.parse(localStorage.getItem(container));
-        for (let ii = 0; ii < restoreData.length; ii++) {
-            let taskNameFromArray = restoreData[ii][0];
+        for (let i = 0; i < restoreData.length; i++) {
+            let taskNameFromArray = restoreData[i][0];
             if (taskNameFromArray === taskName) {
-                if (restoreData[ii][1] === 'notDone') {
-                    restoreData[ii] = [taskName, 'done'];
-
-                } else {
-                    restoreData[ii] = [taskName, 'notDone'];
-                }
+                restoreData[i] = restoreData[i][1] === 'notDone' ? [taskName, 'done'] : [taskName, 'notDone'];
             }
             localStorage.setItem(container, JSON.stringify(restoreData));
         }
